@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,46 +7,53 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 220 20% 14%;
+    --foreground: 210 24% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 14%;
+    --card-foreground: 210 24% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 14%;
+    --popover-foreground: 210 24% 10%;
 
-    --primary: 152 55% 38%;
+    --primary: 160 84% 39%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 152 30% 95%;
-    --secondary-foreground: 152 55% 28%;
+    --secondary: 160 30% 96%;
+    --secondary-foreground: 160 60% 25%;
 
     --muted: 220 14% 96%;
-    --muted-foreground: 220 10% 46%;
+    --muted-foreground: 220 9% 46%;
 
-    --accent: 152 30% 92%;
-    --accent-foreground: 152 55% 28%;
+    --accent: 160 40% 94%;
+    --accent-foreground: 160 60% 25%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 152 55% 38%;
+    --ring: 160 84% 39%;
 
-    --radius: 0.625rem;
+    --radius: 0.75rem;
 
-    --surface: 220 20% 98%;
-    --surface-foreground: 220 20% 14%;
+    /* Custom tokens */
+    --hero-bg: 160 50% 97%;
+    --surface: 220 20% 97.5%;
+    --surface-foreground: 210 24% 10%;
+    --card-shadow: 0 1px 3px 0 rgba(0,0,0,0.04), 0 1px 2px -1px rgba(0,0,0,0.04);
+    --card-shadow-hover: 0 10px 25px -5px rgba(0,0,0,0.06), 0 8px 10px -6px rgba(0,0,0,0.04);
+    --gradient-primary: linear-gradient(135deg, hsl(160 84% 39%), hsl(170 70% 45%));
+    --gradient-hero: linear-gradient(180deg, hsl(160 50% 97%) 0%, hsl(0 0% 100%) 100%);
+    --step-line: 160 84% 39%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 152 55% 38%;
+    --sidebar-primary: 160 84% 39%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 152 30% 95%;
-    --sidebar-accent-foreground: 152 55% 28%;
+    --sidebar-accent: 160 30% 96%;
+    --sidebar-accent-foreground: 160 60% 25%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 152 55% 38%;
+    --sidebar-ring: 160 84% 39%;
   }
 }
 
@@ -57,5 +64,42 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(160 84% 39%), hsl(180 60% 35%));
+  }
+
+  .card-elevated {
+    box-shadow: var(--card-shadow);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .card-elevated:hover {
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .icon-container {
+    @apply flex items-center justify-center rounded-xl;
+    background: linear-gradient(135deg, hsl(160 84% 39% / 0.1), hsl(170 70% 45% / 0.15));
+  }
+
+  .section-label {
+    @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold tracking-wide uppercase;
+    background: hsl(160 84% 39% / 0.08);
+    color: hsl(160 84% 35%);
+  }
+
+  .step-connector {
+    background: linear-gradient(90deg, hsl(160 84% 39% / 0.3), hsl(160 84% 39%), hsl(160 84% 39% / 0.3));
+    height: 2px;
   }
 }
