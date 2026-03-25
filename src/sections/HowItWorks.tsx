@@ -1,4 +1,3 @@
-import { Separator } from "@/components/ui/separator";
 import { Database, Gauge, Rocket, TrendingUp } from "lucide-react";
 
 const steps = [
@@ -30,28 +29,40 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section id="workflow" className="py-16 bg-surface">
+    <section id="workflow" className="py-20 md:py-28">
       <div className="container">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground">How The System Works</h2>
-          <p className="mt-3 text-muted-foreground max-w-md mx-auto text-sm">
-            A streamlined four-step workflow from data input to insights.
+        <div className="max-w-xl mx-auto text-center mb-16">
+          <span className="section-label mb-4">Workflow</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-4 tracking-tight">
+            How the system <span className="gradient-text">works</span>
+          </h2>
+          <p className="mt-4 text-muted-foreground text-[15px] leading-relaxed">
+            A streamlined four-step workflow from data input to actionable insights.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {steps.map((s, i) => (
-            <div key={s.step} className="relative text-center">
-              <div className="mx-auto h-14 w-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
-                <s.icon className="h-6 w-6 text-primary" />
+
+        <div className="relative">
+          {/* Connector line (desktop) */}
+          <div className="hidden md:block absolute top-[52px] left-[12%] right-[12%] step-connector" />
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6">
+            {steps.map((s) => (
+              <div key={s.step} className="relative text-center">
+                {/* Step circle */}
+                <div className="relative z-10 mx-auto h-[72px] w-[72px] rounded-2xl bg-card border-2 border-primary/20 flex items-center justify-center mb-5 shadow-sm">
+                  <s.icon className="h-7 w-7 text-primary" />
+                </div>
+
+                <span className="font-mono text-xs font-medium text-primary tracking-widest">
+                  STEP {s.step}
+                </span>
+                <h3 className="mt-2 font-bold text-foreground text-base">{s.title}</h3>
+                <p className="mt-2 text-[13px] text-muted-foreground leading-relaxed max-w-[200px] mx-auto">
+                  {s.description}
+                </p>
               </div>
-              <span className="text-xs font-bold text-primary tracking-widest">STEP {s.step}</span>
-              <h3 className="mt-2 font-semibold text-foreground text-sm">{s.title}</h3>
-              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">{s.description}</p>
-              {i < steps.length - 1 && (
-                <Separator className="hidden md:block absolute top-7 left-[60%] w-[80%] bg-border" />
-              )}
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,29 +1,71 @@
 import logo from "@/assets/yorindo-logo.png";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
-const navItems = ["Overview", "System", "Workflow", "Access"];
+const navItems = [
+  { label: "Overview", href: "#overview" },
+  { label: "System", href: "#system" },
+  { label: "Workflow", href: "#workflow" },
+  { label: "Access", href: "#access" },
+];
 
 const Header = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="container flex h-16 items-center justify-between">
-        <div className="flex items-center gap-3">
-          <img src={logo} alt="Yorindo Communication" className="h-9 w-9 rounded-full" />
-          <span className="text-lg font-bold tracking-tight text-foreground">
-            Yorindo <span className="font-medium text-muted-foreground">Communication</span>
-          </span>
-        </div>
-        <nav className="hidden md:flex items-center gap-8">
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/60">
+      <div className="container flex h-[72px] items-center justify-between">
+        <a href="#" className="flex items-center gap-3 group">
+          <div className="relative">
+            <img src={logo} alt="Yorindo Communication" className="h-10 w-10 rounded-full ring-2 ring-primary/20" />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[15px] font-bold tracking-tight text-foreground leading-tight">
+              Yorindo
+            </span>
+            <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-[0.15em]">
+              Communication
+            </span>
+          </div>
+        </a>
+
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-1">
           {navItems.map((item) => (
             <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+              key={item.label}
+              href={item.href}
+              className="px-4 py-2 text-[13px] font-medium text-muted-foreground rounded-lg transition-all hover:text-foreground hover:bg-muted/60"
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </nav>
+
+        {/* Mobile toggle */}
+        <button
+          className="md:hidden p-2 rounded-lg hover:bg-muted"
+          onClick={() => setMobileOpen(!mobileOpen)}
+        >
+          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </div>
+
+      {/* Mobile nav */}
+      {mobileOpen && (
+        <div className="md:hidden border-t bg-background px-6 pb-4 pt-2">
+          {navItems.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={() => setMobileOpen(false)}
+              className="block py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      )}
     </header>
   );
 };
