@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Eye, EyeOff, Shield, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [focused, setFocused] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex font-[system-ui]" style={{ fontFamily: "'DM Sans', 'Helvetica Neue', sans-serif" }}>
@@ -350,7 +352,11 @@ const Login = () => {
 
             </div>
 
-            <button className="submit-btn" type="button">
+            <button
+  className="submit-btn"
+  type="button"
+  onClick={() => navigate("/dashboard")}
+>
               Sign in to Dashboard
               <ArrowRight size={15} />
             </button>
