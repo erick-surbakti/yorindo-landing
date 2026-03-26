@@ -1,6 +1,7 @@
 import { ArrowRight, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/hero-bg.png";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -52,21 +53,21 @@ const Hero = () => {
 
           <p className="mt-3 text-sm text-white/60 max-w-md leading-relaxed">
             Built for the internal admin team to manage, monitor, and control all Yorindo Communication services from a single dashboard.
-          </p>
+          </p><br></br>
 
           {/* CTA */}
-          <div className="mt-10 flex items-center gap-4">
-            <Button
-              size="lg"
-              className="h-12 px-7 text-sm font-semibold gap-2 rounded-xl 
-              bg-gradient-to-r from-blue-600 to-blue-700 
-              hover:from-blue-500 hover:to-blue-600 
-              text-white shadow-lg shadow-blue-900/30"
-            >
-              Go to Dashboard
-              <ArrowRight className="h-4 w-4" />
-            </Button>
-          </div>
+          <Link to="/login">
+  <Button
+    size="lg"
+    className="h-12 px-7 text-sm font-semibold gap-2 rounded-xl 
+    bg-gradient-to-r from-blue-600 to-blue-700 
+    hover:from-blue-500 hover:to-blue-600 
+    text-white shadow-lg shadow-blue-900/30"
+  >
+    Go to Dashboard
+    <ArrowRight className="h-4 w-4" />
+  </Button>
+</Link>
 
           {/* STATS */}
           <div className="mt-14 flex items-center gap-10 md:gap-14">
